@@ -78,8 +78,9 @@
 ;; Use Doom's built-in centering function
 (setq +doom-dashboard-ascii-banner-fn #'my-doom-centered-banner)
 
+
 (defun my-doom-centered-banner ()
-  "Friday_Thursday banner using Doom's centering"
+  "FRIDAY THURSDAY banner using Doom's centering"
   (let ((banner-lines
          '("███████╗██████╗ ██╗██████╗  █████╗ ██╗   ██╗"
            "██╔════╝██╔══██╗██║██╔══██╗██╔══██╗╚██╗ ██╔╝"
@@ -96,9 +97,24 @@
            "   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝  ╚═╝   ╚═╝   ")))
     (dolist (line banner-lines)
       (insert (+doom-dashboard--center +doom-dashboard--width line) "\n"))))
-
 ;; Alternative: Set a wider dashboard width
 (setq +doom-dashboard--width 120)  ; Increase if your banner is still too wide
 
-;; Set Arabic font to Noto Naskh Arabic
-(set-fontset-font t 'arabic "Noto Naskh Arabic")
+;; Set Arabic font for all Arabic Unicode ranges
+(setq doom-unicode-font (font-spec :family "Noto Sans Arabic UI" :size 14))
+(setq doom-symbol-font (font-spec :family "Noto Sans Arabic UI" :size 14))
+
+
+;; Change comment color to something more visible
+(custom-set-faces!
+  '(font-lock-comment-face :foreground "#7cb342"))  ; Nice green
+  ;; Or try these alternatives:
+  ;; '(font-lock-comment-face :foreground "#ff9800")  ; Orange
+  ;; '(font-lock-comment-face :foreground "#2196f3")  ; Blue
+  ;; '(font-lock-comment-face :foreground "#9c27b0")  ; Purple
+
+;; SLIME configuration
+(load (expand-file-name "~/.quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "sbcl")
+
+
